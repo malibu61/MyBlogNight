@@ -1,0 +1,176 @@
+﻿﻿@using X.PagedList.Mvc.Core
+@model X.PagedList.IPagedList<MyBlogNight2.EntityLayer.Concrete.Article>
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<body>
+
+    <div id="wrapper">
+        <!-- end market-header -->
+
+        <section id="cta" class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-12 align-self-center">
+                        <h2>Sürdürülebilir Yaşam ve Tarım</h2>
+                        <p class="lead">Sürdürülebilir tarım, hem doğayı korumak hem de gelecek nesillere yaşanabilir bir dünya bırakmak için atılan en önemli adımlardan biridir. Doğal kaynakları verimli kullanarak, kimyasal gübre ve pestisitlere bağımlılığı azaltmak, toprağın, suyun ve biyolojik çeşitliliğin korunmasını sağlar. Özellikle Ege Bölgesi gibi doğal zenginliklerle dolu yerlerde, organik tarım uygulamaları ve yerel üreticilerin desteklenmesi, hem çevreye hem de yerel ekonomiye büyük katkı sunar. Kendi bahçesinden sebze meyve yetiştirmek isteyenlerden, çiftlik hayatına meraklı olanlara kadar herkes, sürdürülebilir bir yaşam tarzını benimseyerek dünyada pozitif bir değişim yaratabilir. 🌿</p>
+                        <a href="#" class="btn btn-primary">Daha Fazla Bigi</a>
+                    </div>
+
+                    <div class="col-lg-4 col-md-12">
+                        <div class="newsletter-widget text-center align-self-center">
+                            <h3>Bugün Abone Olun!</h3>
+                            <p>Haftalık bültenimize katılın, en yeni gelişmeleri e-posta yoluyla keşfedin!</p>
+                            <form class="form-inline" method="post" action="/Default/AddNewsletterSubscriber/" onsubmit="return showSuccessAlert();">
+
+                                <input type="text" name="NSEmail" placeholder="Mail Adresinizi Giriniz" required class="form-control" />
+                                <input type="submit" value="Abone Ol" class="btn btn-default btn-block" />
+
+                            </form>
+                        </div><!-- end newsletter -->
+                    </div>
+
+                    <script>
+                        function showSuccessAlert() {
+                            Swal.fire({
+                                title: "Başarıyla Abone Oldunuz!",
+                                text: "Bültene katılmayı başarıyla tamamladınız.",
+                                icon: "success"
+                            });
+                            return true; // Formun gönderilmesini engeller, sadece popup gösterir.
+                        }
+                    </script>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="section lb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                        <div class="page-wrapper">
+                            <div class="blog-custom-build">
+
+
+
+                                @await Component.InvokeAsync("_DefaultArticleListComponentPartial")
+
+
+
+                            </div>
+                        </div>
+
+                        <hr class="invis">
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <nav aria-label="Page navigation">
+                                    @Html.PagedListPager(
+                                             Model,
+                                             page => Url.Action("Index_", new { page = page, pageSize = 2 }),
+                                             new PagedListRenderOptions
+                                    {
+                                        LiElementClasses = new[] { "page-item" },
+                                        PageClasses = new[] { "page-link" },
+                                        UlElementClasses = new[] { "pagination", "justify-content-center" }
+                                    }
+                                             )
+                                </nav>
+                            </div>
+                        </div>
+
+                    </div><!-- end col -->
+
+
+
+
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sidebar">
+                            <div class="widget">
+                                <h2 class="widget-title">Son Eklenen Bloglar</h2>
+                                <div class="blog-list-widget">
+                                    <div class="list-group">
+
+                                        @await Component.InvokeAsync("_DefaultRecentThreeBlogListComponentPartial")
+
+                                    </div>
+                                </div><!-- end blog-list -->
+                            </div><!-- end widget -->
+                            @await Component.InvokeAsync("_DefaultPopularCategoriesListComponentPartial")
+
+
+                        </div><!-- end sidebar -->
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                        <div class="widget">
+                            <h2 class="widget-title">Son Eklenen Bloglar</h2>
+                            <div class="blog-list-widget">
+                                <div class="list-group">
+
+                                    @await Component.InvokeAsync("_DefaultRecentThreeBlogListComponentPartial")
+
+
+
+
+
+                                </div>
+                            </div><!-- end blog-list -->
+                        </div><!-- end widget -->
+                    </div><!-- end col -->
+
+
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                        @* <div class="widget">
+                        <div class="link-widget"> *@
+
+
+                        @await Component.InvokeAsync("_DefaultPopularCategoriesListComponentPartial")
+
+
+                        @*  </div><!-- end link-widget -->
+                        </div><!-- end widget --> *@
+                    </div><!-- end col -->
+                </div><!-- end row -->
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <br>
+                        <br>
+                        <div class="copyright">&copy; Markedia. Design: <a href="http://html.design">HTML Design</a>.</div>
+                    </div>
+                </div>
+            </div><!-- end container -->
+        </footer><!-- end footer -->
+
+        <div class="dmtop"></div>
+
+    </div><!-- end wrapper -->
+    <!-- Core JavaScript
+    ================================================== -->
+    <script src="..//markedia/markedia/js/jquery.min.js"></script>
+    <script src="..//markedia/markedia/js/tether.min.js"></script>
+    <script src="..//markedia/markedia/js/bootstrap.min.js"></script>
+    <script src="..//markedia/markedia/js/animate.js"></script>
+    <script src="..//markedia/markedia/js/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.21/dist/sweetalert2.min.js"></script> @* sweetalert *@
+
+
+</body>
+</html>

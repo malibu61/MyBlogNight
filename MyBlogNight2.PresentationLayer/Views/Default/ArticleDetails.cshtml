@@ -1,0 +1,175 @@
+﻿ @model Article
+
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Site Metas -->
+    <title>Markedia - Marketing Blog Template</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="/markedia/markedia/images/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/markedia/markedia/images/apple-touch-icon.png">
+
+    <!-- Design fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/markedia/markedia/css/bootstrap.css" rel="stylesheet">
+
+    <!-- FontAwesome Icons core CSS -->
+    <link href="/markedia/markedia/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/markedia/markedia/style.css" rel="stylesheet">
+
+    <!-- Animate styles for this template -->
+    <link href="/markedia/markedia/css/animate.css" rel="stylesheet">
+
+    <!-- Responsive styles for this template -->
+    <link href="/markedia/markedia/css/responsive.css" rel="stylesheet">
+
+    <!-- Colors for this template -->
+    <link href="/markedia/markedia/css/colors.css" rel="stylesheet">
+
+    <!-- Version Marketing CSS for this template -->
+    <link href="/markedia/markedia/css/version/marketing.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <div id="wrapper">
+
+        <section class="section lb m3rem">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                        <div class="page-wrapper">
+
+                            @* @await Component.InvokeAsync("_AuthorDetailArticleComponentPartial") *@
+                            @await Component.InvokeAsync("_AuthorDetailArticleComponentPartial", new { id = ViewBag.ArticleIdGlobal })
+
+
+                            @await Component.InvokeAsync("_AuthorDetailAuthorComponentPartial")
+
+
+                            @await Component.InvokeAsync("_ArticleDetailCommentsListComponentPartial")
+
+                            @await Component.InvokeAsync("_ArticleDetailMakeCommentDetailComponentPartial")
+
+
+                        </div><!-- end page-wrapper -->
+                    </div><!-- end col -->
+
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sidebar">
+                            <div class="widget-no-style">
+                                <div class="newsletter-widget text-center align-self-center">
+                                    <h3>Bugün Abone Olun!</h3>
+                                    <p>Haftalık bültenimize katılın, en yeni gelişmeleri e-posta yoluyla keşfedin!</p>
+                                    <form class="form-inline" method="post" action="/Default/AddNewsletterSubscriber/" onsubmit="return showSuccessAlert();">
+
+                                        <input type="text" name="NSEmail" placeholder="Mail Adresinizi Giriniz" required class="form-control" />
+                                        <input type="submit" value="Abone Ol" class="btn btn-default btn-block" />
+
+                                    </form>
+                                </div><!-- end newsletter -->
+                            </div>
+
+                            <script>
+                                function showSuccessAlert() {
+                                    Swal.fire({
+                                        title: "Başarıyla Abone Oldunuz!",
+                                        text: "Bültene katılmayı başarıyla tamamladınız.",
+                                        icon: "success"
+                                    });
+                                    return true; // Formun gönderilmesini engeller, sadece popup gösterir.
+                                }
+                            </script>
+
+
+                            <div class="widget">
+                                <h2 class="widget-title">Son Eklenen Bloglar</h2>
+                                <div class="blog-list-widget">
+                                    <div class="list-group">
+
+
+                                        @await Component.InvokeAsync("_DefaultRecentThreeBlogListComponentPartial")
+
+
+                                    </div>
+                                </div><!-- end blog-list -->
+                            </div><!-- end widget -->
+                            @await Component.InvokeAsync("_DefaultPopularCategoriesListComponentPartial")
+
+
+                        </div><!-- end sidebar -->
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                        <div class="widget">
+                            <h2 class="widget-title">Recent Posts</h2>
+                            <div class="blog-list-widget">
+                                <div class="list-group">
+
+                                    @await Component.InvokeAsync("_DefaultRecentThreeBlogListComponentPartial")
+
+                                </div>
+                            </div><!-- end blog-list -->
+                        </div><!-- end widget -->
+                    </div><!-- end col -->
+
+
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+
+
+                        @await Component.InvokeAsync("_DefaultPopularCategoriesListComponentPartial")
+
+                    </div><!-- end row -->
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <br>
+                            <br>
+                            <div class="copyright">&copy; Markedia. Design: <a href="http://html.design">HTML Design</a>.</div>
+                        </div>
+                    </div>
+                </div><!-- end container -->
+        </footer><!-- end footer -->
+
+        <div class="dmtop"></div>
+
+    </div><!-- end wrapper -->
+    <!-- Core JavaScript
+    ================================================== -->
+    <script src="/markedia/markedia/js/jquery.min.js"></script>
+    <script src="/markedia/markedia/js/tether.min.js"></script>
+    <script src="/markedia/markedia/js/bootstrap.min.js"></script>
+    <script src="/markedia/markedia/js/animate.js"></script>
+    <script src="/markedia/markedia/js/custom.js"></script>
+
+</body>
+</html>

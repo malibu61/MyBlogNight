@@ -1,0 +1,36 @@
+﻿@model Article
+
+@{
+    ViewData["Title"] = "CreateArticle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Yeni Blog Ekle</h1>
+<form method="post">
+    <div class="mb-4">
+        <label for="Title">Başlık</label>
+        <input type="text" id="Title" asp-for="Title" class="form-control" placeholder="Başlığı buraya yazınız" />
+    </div>
+
+    <div class="mb-4">
+        <label for="CoverImageUrl">Küçük Kapak Fotoğrafı</label>
+        <input type="text" id="CoverImageUrl" asp-for="CoverImageUrl" class="form-control" placeholder="Kapak fotoğrafı URL'si" />
+    </div>
+
+    <div class="mb-4">
+        <label for="MainImageUrl">Ana Kapak Fotoğrafı</label>
+        <input type="text" id="MainImageUrl" asp-for="MainImageUrl" class="form-control" placeholder="Ana kapak fotoğrafı URL'si" />
+    </div>
+
+    <div class="mb-4">
+        <label for="Detail">Makale Metni</label>
+        @Html.TextAreaFor(x => x.Detail, new { @class = "form-control", rows = "6", placeholder = "Makale metnini buraya yazınız" })
+    </div>
+
+    <div class="mb-4">
+        <label for="Category">Kategori</label>
+        @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.v1, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Blog Ekle</button>
+</form>

@@ -1,0 +1,47 @@
+﻿@model MyBlogNight2.EntityLayer.Concrete.Article
+
+@{
+    ViewData["Title"] = "EditArticle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>EditArticle</h1>
+
+
+
+<form method="post">
+
+    @Html.Label("Id")
+    <input type="text" asp-for="ArticleId" class="form-control" readonly="readonly">
+    <br />
+
+    @Html.Label("Yazar Id")
+    <input type="text" asp-for="AppUserId" class="form-control" readonly="readonly">
+    <br />
+
+    @Html.Label("Başlık")
+    <input type="text" asp-for="Title" class="form-control">
+    <br />
+
+    @Html.Label("Kategori Id")
+    <input type="text" asp-for="CategoryId" class="form-control">
+    <br />
+
+    @Html.Label("Tarih")
+    <input type="text" asp-for="CreatedDate" class="form-control">
+    <br />
+
+    @Html.Label("Kapak Resmi")
+    <input type="text" asp-for="CoverImageUrl" class="form-control">
+    <br />
+
+    @Html.Label("Ana Resim")
+    <input type="text" asp-for="MainImageUrl" class="form-control">
+    <br />
+
+    @Html.Label("Açıklama")
+    <textarea asp-for="Detail" class="form-control"></textarea>
+    <br />
+
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+</form>

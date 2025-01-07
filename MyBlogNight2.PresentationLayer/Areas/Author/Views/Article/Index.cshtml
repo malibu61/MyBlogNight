@@ -1,0 +1,47 @@
+﻿@model List<MyBlogNight2.EntityLayer.Concrete.Article>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+
+    <div class="content">
+        <h3>Yazılarım</h3>
+
+
+        <table class="table table-hover">
+            <tr>
+                <th>Sıra Nu.</th>
+                <th>Başlık</th>
+                <th>Yazı</th>
+                <th>Sil</th>
+                <th>Güncelle</th>
+                <th>@ViewBag.Articles</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                count++;
+
+                <tr>
+                    <td>@count</td>
+                    <td>@item.Title</td>
+                    <td>@item.Detail</td>
+                    <td><a href="/Author/Article/DeleteArticle/@item.ArticleId" class="btn btn-danger">Sil</a></td>
+                    <td><a href="/Author/Article/EditArticle/@item.ArticleId" class="btn btn-warning">Güncelle</a></td>
+                </tr>
+
+            }
+
+        </table>
+
+        <a href="/Author/Article/CreateArticle" class="btn btn-secondary">Yeni Makale Girişi</a>
+
+        <br />
+    </div>
+</body>
+</html>

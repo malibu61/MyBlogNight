@@ -1,0 +1,47 @@
+﻿@model List<Comment>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+
+    <div class="content">
+        <h3>Yorumlarım</h3>
+
+
+        <table class="table table-hover">
+            <tr>
+                <th>Id</th>
+                <th>Kullanıcı</th>
+                <th>Konu</th>
+                <th>Yorum</th>
+                <th>Tarih</th>
+                <th>Sil</th>
+                <th>Güncelle</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>@item.CommentId</td>
+                    <td>@item.AppUserId</td>
+                    <td>@item.Article.Title</td>
+                    <td>@item.CommentDetail</td>
+                    <td>@item.CreatedDate</td>
+                    <td><a href="/Author/Comment/DeleteMyComment/@item.CommentId" class="btn btn-danger">Sil</a></td>
+                    <td><a href="/Author/Comment/EditMyComment/@item.CommentId" class="btn btn-warning">Güncelle</a></td>
+                </tr>
+
+            }
+
+        </table>
+
+        <br />
+    </div>
+</body>
+</html>

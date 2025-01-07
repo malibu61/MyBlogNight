@@ -1,0 +1,42 @@
+﻿@model MyBlogNight2.EntityLayer.Concrete.Comment
+
+@{
+    ViewData["Title"] = "EditMyComment";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<h1>Yorum Düzenleme Formu</h1>
+
+<form method="post">
+
+    @Html.Label("Id")
+    <input type="text" asp-for="ArticleId" class="form-control" readonly="readonly">
+    <br />
+
+
+    @Html.Label("Blog Id")
+    <input type="text" asp-for="ArticleId" class="form-control" readonly="readonly">
+    <br />
+
+    @Html.Label("Yorum Yapan Kişi")
+    <input type="text" asp-for="AppUserId" class="form-control" readonly="readonly">
+    <br />
+
+    @Html.Label("Yorum")
+    <textarea type="text" asp-for="CommentDetail" class="form-control"></textarea>
+    <br />
+
+
+    @Html.Label("Tarih")
+    <input type="text" asp-for="CreatedDate" class="form-control">
+    <br />
+
+    @Html.Label("Durumu")
+    <input type="text" asp-for="Status" class="form-control">
+    <br />
+
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+</form>
+
+

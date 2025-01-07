@@ -1,0 +1,20 @@
+﻿@model Comment
+
+<div class="custombox clearfix">
+    <h4 class="small-title">Yorum Yap</h4>
+    <div class="row">
+        <div class="col-lg-12">
+
+
+
+            <form class="form-wrapper" method="post" action="/Default/LeaveComment">
+                <input type="text" class="form-control" placeholder="Kullanıcı Adı" asp-for="AppUserId">
+                <textarea class="form-control" placeholder="Yorum" asp-for="CommentDetail"></textarea>
+                <button type="submit" class="btn btn-primary">Gönder</button>
+            </form>
+
+
+
+        </div>
+    </div>
+</div>
